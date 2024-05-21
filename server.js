@@ -65,7 +65,7 @@ app.get('/', (req, res) => {
 require("./app/routes/tutorial.routes")(app);
 
 // Start the HTTP server
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
