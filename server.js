@@ -17,7 +17,10 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const path = __dirname+'/views/'
+//run the front end build files found in the specified directory
+//const path = __dirname+'/../frontend/static/browser/'
+const path = __dirname + '/views/browser/'
+//const path = '../frontend/static/browser/'
 app.use(express.static(path));
 
 //const server = http.createServer(app);
@@ -49,23 +52,25 @@ db.sequelize.sync()
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
   });
-
+/*
+//drop and recreate DB
 db.sequelize.sync({ force: true }).then(() => {
 console.log("Drop and re-sync db.");
 });
+*/
 
 // Define your Express routes here
 app.get('/', (req, res) => {
     //res.send('Hola from Express!');
     res.sendFile(path + 'index.html');
-    res.json({ message: "Welcome to bezkoder application." });
+    //res.json({ message: "Welcome to bezkoder application." });
 });
 
 // Setup routes
 require("./app/routes/tutorial.routes")(app);
 
 // Start the HTTP server
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
