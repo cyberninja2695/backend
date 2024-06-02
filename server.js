@@ -1,16 +1,18 @@
 const express = require('express');
-const cors = require("cors");
+//const cors = require("cors");
 const http = require('http');
 const WebSocket = require('ws');
 
 const app = express();
 
+//cors is used to integrate database manipulation requests on 8081 with the application which is served at 8080
+/*
 var corsOptions = {
     origin: "http://localhost:8081"
   };
   
 app.use(cors(corsOptions));
-
+*/
 // parse requests of content-type - application/json
 app.use(express.json());
 
@@ -60,7 +62,7 @@ console.log("Drop and re-sync db.");
 */
 
 // Define your Express routes here
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
     //res.send('Hola from Express!');
     res.sendFile(path + 'index.html');
     //res.json({ message: "Welcome to bezkoder application." });
